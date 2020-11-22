@@ -1,0 +1,15 @@
+<a class="nav_button" href="<%= bands_url %>">Go To Bands</a>
+
+<h1><%= @band.name %></h1>
+
+<ul class="link_list">
+	<% @band.albums.each do |album| %>
+		<li>
+			<a class="link" href="<%= album_url(album) %>"><%= album.title %></a>
+			<a class="nav_button edit_button" href="<%= edit_album_url(album) %>">Edit</a>
+		</li>
+	<% end %>
+</ul>
+<br>
+
+<a class="nav_button" href="<%= new_band_album_url(@band) %>">New Album</a>

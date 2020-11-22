@@ -1,0 +1,48 @@
+<% action = album.persisted? ? album_url(album) : albums_url %>
+
+<%= render 'shared/errors' %>
+
+<form action="<%= action %>" method="POST">
+	<%= auth_token %>
+
+	<% if album.persisted? %>
+		<input type="hidden" name="_method" value="patch">
+	<% end %>
+
+	<label for="album_title">Title</label>
+	<input id="album_title" type="text" name="album[title]" value="<%= album.title %>">
+
+	<label for="album_year">Year</label>
+	<input id="album_year" type="text" name="album[year]" value="<%= album.year %>">
+
+	<label for="album_band">Band</label>
+	<select id="album_band" name="album[band_id]">
+		<% Band.all.each do |band| %>
+			<option value="<%= band.id %>" <%= band == album.band ? "selected" : "" %>>
+				<%= band.name %>
+			</option>
+		<% end %>
+	</select>
+
+	<div class="radio">
+		<label for="studio">Studio</label>
+		<input 
+			id="studio" 
+			type="radio" 
+			name="album[version]" 
+			value="Studio"
+			<%= album.version ? "checked" : "" %>
+		>
+		
+		<label for="live">Live</label>
+		<input 
+			id="live" 
+			type="radio" 
+			name="album[version]" 
+			value="Live"
+			<%= album.version ? "" : "checked" %>
+		>	
+	</div>
+
+	<input type="submit">
+</form>

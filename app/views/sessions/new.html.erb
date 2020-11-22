@@ -1,0 +1,17 @@
+<a class="nav_button" href="<%= new_user_url %>">Sign Up</a>
+
+<h1>Log In</h1>
+
+<%= render 'shared/errors' %>
+
+<form action="<%= session_url %>" method="POST">
+	<%= auth_token %>
+
+	<label for="user_email">Email</label>
+	<input id="user_email" type="text" name="user[email]" value="<%= @user.email %>">
+
+	<label for="user_password">Password</label>
+	<input id="user_password" type="password" name="user[password]" value="<%= @user.password %>">
+
+	<input type="submit" value="Submit">
+</form>

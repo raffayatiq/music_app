@@ -1,0 +1,27 @@
+<% action = track.persisted? ? track_url(track) : tracks_url %>
+
+<%= render 'shared/errors' %>
+
+<form action="<%= action %>" method="POST">
+	<%= auth_token %>
+
+	<% if track.persisted? %>
+		<input type="hidden" name="_method" value="patch">
+	<% end %>
+
+	<label for="track_title">Title</label>
+	<input id="track_title" type="text" name="track[title]" value="<%= track.title %>">
+
+	<label for="track_lyrics">Lyrics</label>
+	<textarea id="track_lyrics" name="track[lyrics]"><%= track.lyrics %></textarea>
+
+	<label for="track_album">Track Album</label>
+	<select id="track_album" name="track[album_id]">
+		<% Album.all.each do |album| %>
+			<option value="<%= album.id %>" <%= track.album == album ? "selected" : "" %>>			<%= album.title %>
+			</option>
+		<% end %>
+	</select>
+
+	<input type="submit">
+</form>

@@ -1,0 +1,36 @@
+<a class="nav_button" href="<%= album_url(@track.album) %>">Go To Album</a>
+
+<h1><%= @track.title %></h1>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/<%= @track.find_video_id %>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<br>
+
+<% if !flash[:errors].nil? %>
+	<ul>
+		<% flash[:errors].each do |error| %>
+			<li><%= error %></li>
+		<% end %>
+	</ul>
+<% end %>
+
+<% if !@track.lyrics.empty? %>
+	<h2>Lyrics</h2>
+	<p>
+		<%= format_lyrics @track.lyrics %>
+	</p>
+<% else %>
+	<%= button_to "Add Lyrics", track_find_lyrics_url(@track), method: :patch %>
+<% end %>
+
+<br>
+<br>
+
+<div class="album_nav">
+	<a class="nav_button" href="<%= edit_track_url(@track)%>">Edit Track</a>
+	<%= button_to "Delete Track", track_url(@track), method: :delete, class: 'nav_button' %>
+</div>
+
+<br>
+<br>
+<br>
+<br>

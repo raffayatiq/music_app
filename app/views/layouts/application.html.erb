@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MusicApp</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Goldman:wght@400;700&display=swap" rel="stylesheet">
+
+  </head>
+
+  <body>
+    <header>
+      <h1>Music App</h1>
+      <% if logged_in? %>
+          <a href="#">Take me home</a>
+          <section class="log_info">
+            <p>Logged in as: <%= current_user.email %></p>
+            <%= button_to "Log Out", session_url, method: :delete %>
+          </section>
+      <% end %>
+    </header>
+
+    <main>
+      <%= yield %>
+    </main> 
+  </body>
+</html>

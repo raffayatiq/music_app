@@ -1,0 +1,214 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+h1, h2, a, input[type=submit], label, ul, li, form, button, ol {
+	margin: 0;
+	padding: 0;
+	border: 0;
+
+	font: inherit;
+	text-align: inherit;
+	text-decoration: inherit;
+	color: inherit;
+	box-sizing: inherit;
+
+	background: transparent;
+	vertical-align: baseline;
+}
+
+html {
+	height: 100%;
+	background: #191414;
+}
+
+body {
+	width: auto;
+	height: 100%;
+	text-align: center;
+	display: flex;
+	flex-wrap: wrap;
+	background: #191414;
+	font-family: 'Goldman', cursive;
+	color: white;
+}
+
+h1, h2 {
+	color: #1DB954;
+}
+
+h1 {
+	font-size: 40px;
+}
+
+h2 {
+	font-size: 25px;
+}
+
+header h1 {
+	font-size: 80px;
+	color: #1DB954;
+	flex: 1 100%;
+}
+
+header {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	flex-wrap: wrap;
+	flex: 1 100%;
+	height: 35%;
+}
+
+main {
+	flex: 1 100%;
+	height: 65%;
+}
+
+main h1 {
+	margin: 25px;
+}
+
+.log_info {
+	display: flex;
+	align-items: center;
+}
+
+.log_info form {
+	margin-left: 25px;
+}
+
+.nav_button, input[type=submit] {
+	margin: 5px;
+	padding: 5px 20px;
+	background: #1DB954;
+	border-radius: 10px;
+	cursor: pointer;
+	color: white;
+	font-size: 25px;
+	font-weight: bold;
+	outline: none; /* removes the white borderish outline when clicking  */
+	box-shadow: 2px 2px darkgreen;
+}
+
+.nav_button:hover, input[type=submit]:hover {
+	background: #0a8234;
+}
+
+.nav_button:active, input[type=submit]:active {
+	position: relative;
+	top: 2px;
+	left: 2px;
+	box-shadow: none;
+}
+
+ul {
+	margin: 10px;
+	list-style: none;
+}
+
+label {
+	color: white;
+}
+
+form {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+}
+
+form input, form select {
+	margin: 10px;
+}
+
+form input {
+	width: 20%;
+}
+
+/* REFACTOR THIS TO ANOTHER STYLESHEET */
+.edit_button {
+	font-size: 15px;
+}
+
+.radio {
+	margin: 10px;
+	display: flex;
+	align-items: center;
+}
+
+.radio input[type=radio] {
+	width: 30px;
+}
+
+.link:hover {
+	color: #1DB954;
+}
+
+.link ~ a {
+	padding: 5px;
+}
+
+.link_list {
+	margin: auto;
+	margin-bottom: 50px;
+	width: 25%;
+}
+
+.link_list li {
+	margin: 20px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.album_nav {
+	margin: auto;
+	width: 40%;
+	display: flex;
+	justify-content: space-around;
+	flex-wrap: wrap;
+}
+
+.album_nav a {
+	flex: 1 25%;
+}
+
+.album_nav input[type=submit] {
+	width: auto;
+	height: 100%;
+}
+
+@media only screen and (max-width: 528px) {
+	.album_nav input[type=submit] {
+		white-space: normal;
+	}
+}
+
+ol {
+	display: flex;
+	flex-direction: column;
+	list-style: none;
+	counter-reset: ordered-counter;
+}
+
+ol li {
+	counter-increment: ordered-counter;
+}
+
+ol li::before {
+  content: counter(ordered-counter) ". ";
+  color: white;
+  font-weight: bold;
+}
