@@ -1,0 +1,12 @@
+<h1>Artists</h1>
+
+<ul class="link_list">
+	<% @artists.each do |artist| %>
+		<li>
+			<a class="link" href="<%= artist_url(artist) %>"><%= artist.name %></a>
+			<a class="nav_button edit_button" href="<%= edit_artist_url(artist) %>">Edit</a>
+		</li>
+	<% end %>
+</ul>
+
+<a class="nav_button" href="<%= new_artist_url %>">New Artist</a>

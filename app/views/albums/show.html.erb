@@ -1,8 +1,8 @@
-<a class="nav_button" href="<%= band_url(@album.band) %>">Go To Band</a>
+<a class="nav_button" href="<%= artist_url(@album.artist) %>">Go To Artist</a>
 
 <h1><%= @album.title %></h1>
 <h3><%= @album.year %></h3>
-<h3><%= @album.band.name %></h3>
+<h3><%= @album.artist.name %></h3>
 <h3><%= @album.version_non_boolean %></h3>
 <br>
 
@@ -26,3 +26,4 @@
 	<a class="nav_button" href="<%= new_album_track_url(@album) %>">New Track</a>
 	<%= button_to "Delete Album", album_url(@album), method: :delete, class: 'nav_button' %>
 </nav>
+<br>

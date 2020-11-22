@@ -15,11 +15,11 @@
 	<label for="album_year">Year</label>
 	<input id="album_year" type="text" name="album[year]" value="<%= album.year %>">
 
-	<label for="album_band">Band</label>
-	<select id="album_band" name="album[band_id]">
-		<% Band.all.each do |band| %>
-			<option value="<%= band.id %>" <%= band == album.band ? "selected" : "" %>>
-				<%= band.name %>
+	<label for="album_artist">Artist</label>
+	<select id="album_artist" name="album[artist_id]">
+		<% Artist.all.each do |artist| %>
+			<option value="<%= artist.id %>" <%= artist == album.artist ? "selected" : "" %>>
+				<%= artist.name %>
 			</option>
 		<% end %>
 	</select>

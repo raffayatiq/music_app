@@ -1,19 +1,19 @@
-<% action = band.persisted? ? band_url(band) : bands_url %>
-<% heading = band.persisted? ? "Edit Band" : "New Band" %>
+<% action = artist.persisted? ? artist_url(artist) : artists_url %>
+<% heading = artist.persisted? ? "Edit Artist" : "New Artist" %>
 
 <h1><%= heading %></h1>
 
 <%= render 'shared/errors' %>
 
 <form action="<%= action %>" method="POST">
-	<% if band.persisted? %>
+	<% if artist.persisted? %>
 		<input type="hidden" name="_method" value="patch">
 	<% end %>
 
 	<%= auth_token %>
 
 	<label for="user_name">Name</label>
-	<input id="user_name" type="text" name="band[name]" value="<%= band.name %>">
+	<input id="user_name" type="text" name="artist[name]" value="<%= artist.name %>">
 
 	<input type="submit">
 </form>

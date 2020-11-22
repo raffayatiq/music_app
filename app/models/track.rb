@@ -10,15 +10,15 @@ class Track < ApplicationRecord
 
 	belongs_to :album
 
-	delegate :band_name, to: :album
+	delegate :artist_name, to: :album
 
 	def find_lyrics
-		link_formatted_track_band = self.album.band.name.split(Regexp.union([" ", "'"])).join("-")
+		link_formatted_track_artist = self.album.artist.name.split(Regexp.union([" ", "'"])).join("-")
 		link_formatted_track_title = self.title.split(Regexp.union([" ", "'"])).join("-")
 
 		retries = 0
 		begin
-			html = open("https://www.musixmatch.com/lyrics/#{link_formatted_track_band}/#{link_formatted_track_title}")
+			html = open("https://www.musixmatch.com/lyrics/#{link_formatted_track_artist}/#{link_formatted_track_title}")
 		rescue
 			retries += 1
 			if retries < 3
@@ -33,7 +33,7 @@ class Track < ApplicationRecord
 	end
 
 	def find_video_id
-		search_query = self.band_name + " " + self.title
+		search_query = self.artist_name + " " + self.title
 		
 		uri = URI("https://www.googleapis.com/youtube/v3/search?key=#{YOUTUBE_API_KEY}&q=#{search_query}&part=snippet,id&order=relevance&maxResults=1")
 

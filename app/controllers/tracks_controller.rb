@@ -52,7 +52,15 @@ class TracksController < ApplicationController
 		@track.save
 		flash[:errors] = ["Could not find lyrics"] if @track.lyrics.empty?
 		redirect_to track_url(@track)
-		
+	end
+
+	def find_video_id
+		@track = Track.find_by(id: params[:track_id])
+		@track.video_id = @track.find_video_id
+
+		@track.save
+		flash[:errors] = ["Could not find video"] if @track.video_id.empty?
+		redirect_to track_url(@track)
 	end
 
 	private

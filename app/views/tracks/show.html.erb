@@ -2,7 +2,13 @@
 
 <h1><%= @track.title %></h1>
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/<%= @track.find_video_id %>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<% if !@track.video_id.nil? %>
+	<iframe width="560" height="315" src="https://www.youtube.com/embed/<%= @track.video_id %>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+	<br>
+<% else %>
+	<%= button_to "Fetch Video", track_find_video_id_url(@track), method: :patch %>
+<% end %>
+
 <br>
 
 <% if !flash[:errors].nil? %>
@@ -19,7 +25,7 @@
 		<%= format_lyrics @track.lyrics %>
 	</p>
 <% else %>
-	<%= button_to "Add Lyrics", track_find_lyrics_url(@track), method: :patch %>
+	<%= button_to "Fetch Lyrics", track_find_lyrics_url(@track), method: :patch %>
 <% end %>
 
 <br>

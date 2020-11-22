@@ -7,7 +7,7 @@ class AlbumsController < ApplicationController
 	#nested
 	def new
 		@album = Album.new
-		@album.band_id = params[:band_id]
+		@album.artist_id = params[:artist_id]
 		render :new
 	end
 
@@ -40,14 +40,14 @@ class AlbumsController < ApplicationController
 
 	def destroy
 		@album = Album.find_by(id: params[:id])
-		album_band = @album.band
+		album_artist = @album.artist
 		@album.destroy
-		redirect_to band_url(album_band)
+		redirect_to artist_url(album_artist)
 	end
 
 	private
 	def album_params
 		params[:album][:version] = params[:album][:version] == "Studio" ? true : false
-		params.require(:album).permit(:title, :year, :band_id, :version)
+		params.require(:album).permit(:title, :year, :artist_id, :version)
 	end
 end
