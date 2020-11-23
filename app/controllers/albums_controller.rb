@@ -53,6 +53,12 @@ class AlbumsController < ApplicationController
 		redirect_to album_url(album)
 	end
 
+	def populate_tracks_from_youtube_playlist
+		album = Album.find_by(id: params[:album_id])
+		album.populate_tracks_from_youtube_playlist
+		redirect_to album_url(album)
+	end
+
 	private
 	def album_params
 		params[:album][:version] = params[:album][:version] == "Studio" ? true : false

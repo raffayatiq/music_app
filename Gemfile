@@ -31,6 +31,7 @@ gem 'pry-rails'
 # gem 'mini_magick', '~> 4.8'
 gem 'nokogiri'
 gem 'yt'
+gem 'rspotify'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

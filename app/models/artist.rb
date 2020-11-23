@@ -7,4 +7,8 @@ class Artist < ApplicationRecord
 		through: :albums,
 		source: :tracks,
 		dependent: :destroy
+
+	def populate_albums
+		album_names = get_album_names_from_spotify_api(self)
+	end
 end

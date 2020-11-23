@@ -25,6 +25,8 @@
 <h2>Tracks</h2>
 <br>
 
+<%= button_to "Populate Tracks", album_populate_tracks_from_youtube_playlist_url(@album), method: :post %>
+
 <ol class="link_list">
 	<% @album.tracks.each do |track| %>
 		<li>

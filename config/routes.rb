@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :albums, except: [:index, :new] do
       resources :tracks, only: [:new]
       patch '/find_youtube_playlist_id', to: 'albums#find_youtube_playlist_id'
+      post '/populate_tracks_from_youtube_playlist', to: 'albums#populate_tracks_from_youtube_playlist'
   end
   
   resources :tracks, except: [:index, :new] do
