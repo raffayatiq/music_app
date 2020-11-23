@@ -24,6 +24,19 @@ class Album < ApplicationRecord
 		result['playlistId']		
 	end
 
+	def populate_tracks_from_youtube_playlist
+		return nil if self.youtube_playlist_id.nil?
+		
+		uri = URI("https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=5000&playlistId=#{self.youtube_playlist_id}&key=#{YOUTUBE_API_KEY}")
+		response = Net::HTTP.get(uri)
+		parsed_response = JSON.parse(response)
+
+		parsed_response["items"].each do |item|
+			next if !Track.find_by(title: item["snippet"]["title"]).nil?
+			Track.create!(title: item["snippet"]["title"], album_id: self.id)
+		end
+	end
+
 	private
 	def set_defaults
 		self.version ||= false

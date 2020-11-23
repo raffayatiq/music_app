@@ -19,7 +19,7 @@
 
 <br>
 
-<% if !@track.lyrics.empty? %>
+<% if !(@track.lyrics.nil? || @track.lyrics.empty?)%>
 	<h2>Lyrics</h2>
 	<p>
 		<%= format_lyrics @track.lyrics %>
