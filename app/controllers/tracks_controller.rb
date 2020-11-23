@@ -50,7 +50,7 @@ class TracksController < ApplicationController
 		@track.lyrics = @track.find_lyrics
 
 		@track.save
-		flash[:errors] = ["Could not find lyrics"] if @track.lyrics.empty?
+		flash[:errors] = ["Could not find lyrics. Make sure song name is correct, or add your own lyrics."] if @track.lyrics.empty?
 		redirect_to track_url(@track)
 	end
 
@@ -59,7 +59,7 @@ class TracksController < ApplicationController
 		@track.video_id = @track.find_video_id
 
 		@track.save
-		flash[:errors] = ["Could not find video"] if @track.video_id.empty?
+		flash[:errors] = ["Could not find video. Make sure song name is correct, or add your own video link."] if @track.video_id.nil?
 		redirect_to track_url(@track)
 	end
 

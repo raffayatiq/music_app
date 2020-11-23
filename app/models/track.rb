@@ -4,8 +4,6 @@ require 'json'
 require 'net/http'
 
 class Track < ApplicationRecord
-	YOUTUBE_API_KEY = 'AIzaSyAzwGhEYWBJKUbTHiBUOh40NoJRa61BMBo'
-
 	validates :title, presence: true
 
 	belongs_to :album
@@ -34,12 +32,11 @@ class Track < ApplicationRecord
 
 	def find_video_id
 		search_query = self.artist_name + " " + self.title
-		
-		uri = URI("https://www.googleapis.com/youtube/v3/search?key=#{YOUTUBE_API_KEY}&q=#{search_query}&part=snippet,id&order=relevance&maxResults=1")
+	
+		result = query_youtube_api(search_query)
 
-		response = Net::HTTP.get(uri)
-		parsed_response =  JSON.parse(response)
-
-		parsed_response['items'].first['id']['videoId']		
+		return nil if result.nil?
+		result['videoId']		
 	end
 end
+	

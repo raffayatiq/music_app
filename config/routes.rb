@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
   resources :albums, except: [:index, :new] do
       resources :tracks, only: [:new]
+      patch '/find_youtube_playlist_id', to: 'albums#find_youtube_playlist_id'
   end
   
   resources :tracks, except: [:index, :new] do

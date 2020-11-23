@@ -13,7 +13,16 @@ class Album < ApplicationRecord
 
 	delegate :name, to: :artist, prefix: true
 
-	has_many :tracks
+	has_many :tracks, dependent: :destroy
+
+	def find_youtube_playlist_id
+		search_query = self.artist_name + " " + self.title
+	
+		result = query_youtube_api(search_query)
+
+		return nil if result.nil?
+		result['playlistId']		
+	end
 
 	private
 	def set_defaults

@@ -45,6 +45,14 @@ class AlbumsController < ApplicationController
 		redirect_to artist_url(album_artist)
 	end
 
+	def find_youtube_playlist_id
+		album = Album.find_by(id: params[:album_id])
+		album.youtube_playlist_id = album.find_youtube_playlist_id
+		flash[:errors] = ["Could not find YouTube playlist."] if album.youtube_playlist_id.nil?
+		album.save
+		redirect_to album_url(album)
+	end
+
 	private
 	def album_params
 		params[:album][:version] = params[:album][:version] == "Studio" ? true : false
