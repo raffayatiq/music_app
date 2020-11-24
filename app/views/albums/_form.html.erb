@@ -24,25 +24,5 @@
 		<% end %>
 	</select>
 
-	<div class="radio">
-		<label for="studio">Studio</label>
-		<input 
-			id="studio" 
-			type="radio" 
-			name="album[version]" 
-			value="Studio"
-			<%= album.version ? "checked" : "" %>
-		>
-		
-		<label for="live">Live</label>
-		<input 
-			id="live" 
-			type="radio" 
-			name="album[version]" 
-			value="Live"
-			<%= album.version ? "" : "checked" %>
-		>	
-	</div>
-
 	<input type="submit">
 </form>

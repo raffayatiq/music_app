@@ -1,13 +1,7 @@
 class Album < ApplicationRecord
 	validates :title, :year, presence: true
-	validates :version, inclusion: { in: [true, false] }
 	validates :artist_id, uniqueness: { scope: :title}
 	validates :year, numericality: { greater_than: 1900, less_than: 9000 }
-	after_initialize :set_defaults
-
-	def version_non_boolean
-		self.version ? "Studio" : "Live"
-	end
 
 	belongs_to :artist
 
@@ -37,8 +31,23 @@ class Album < ApplicationRecord
 		end
 	end
 
-	private
-	def set_defaults
-		self.version ||= false
+	def populate_tracks_from_spotify_api
+		retries = 0
+		begin
+			RSpotify::authenticate(SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET)
+			search_results = RSpotify::Album.search(self.title)
+		rescue
+			retries += 1
+			if retries < 3
+				retry
+			else
+				return nil
+			end
+		end
+		
+		tracks = search_results.first.tracks
+		tracks.each do |track|
+			Track.create!(title: track.name, album_id: self.id)
+		end
 	end
 end

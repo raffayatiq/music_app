@@ -53,15 +53,14 @@ class AlbumsController < ApplicationController
 		redirect_to album_url(album)
 	end
 
-	def populate_tracks_from_youtube_playlist
+	def populate_tracks_from_spotify_api
 		album = Album.find_by(id: params[:album_id])
-		album.populate_tracks_from_youtube_playlist
+		album.populate_tracks_from_spotify_api
 		redirect_to album_url(album)
 	end
 
 	private
 	def album_params
-		params[:album][:version] = params[:album][:version] == "Studio" ? true : false
-		params.require(:album).permit(:title, :year, :artist_id, :version)
+		params.require(:album).permit(:title, :year, :artist_id)
 	end
 end

@@ -1,9 +1,8 @@
 <a class="nav_button" href="<%= artist_url(@album.artist) %>">Go To Artist</a>
 
 <h1><%= @album.title %></h1>
-<h3><%= @album.year %></h3>
 <h3><%= @album.artist.name %></h3>
-<h3><%= @album.version_non_boolean %></h3>
+<h3><%= @album.year %></h3>
 <br>
 
 <% if !flash[:errors].nil? %>
@@ -25,8 +24,6 @@
 <h2>Tracks</h2>
 <br>
 
-<%= button_to "Populate Tracks", album_populate_tracks_from_youtube_playlist_url(@album), method: :post %>
-
 <ol class="link_list">
 	<% @album.tracks.each do |track| %>
 		<li>
@@ -35,6 +32,10 @@
 		</li>
 	<% end %>
 </ol>
+
+<%= button_to "Populate Tracks", album_populate_tracks_from_spotify_api_url(@album), method: :post %>
+<br>
+<br>
 
 <nav class="album_nav">
 	<a class="nav_button" href="<%= edit_album_url(@album) %>">Edit Album</a>
