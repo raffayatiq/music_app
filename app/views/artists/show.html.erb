@@ -12,6 +12,8 @@
 </ul>
 <br>
 
+<%= button_to "Populate Albums", artist_populate_albums_url(@artist), method: :post %>
+
 <div class="album_nav">
 	<a class="nav_button" href="<%= new_artist_album_url(@artist) %>">New Album</a>	
 	<%= button_to "Delete Artist", artist_url(@artist), method: :delete %>

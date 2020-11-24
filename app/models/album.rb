@@ -12,7 +12,7 @@ class Album < ApplicationRecord
 	def find_youtube_playlist_id
 		search_query = self.artist_name + " " + self.title
 	
-		result = query_youtube_api(search_query)
+		result = query_youtube_api(search_query, "playlist")
 
 		return nil if result.nil?
 		result['playlistId']		

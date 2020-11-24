@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resource :session, only: [:new, :create, :destroy]
   resources :artists do
   	resources :albums, only: [:new]
+    post '/populate_albums', to: 'artists#populate_albums'
   end
 
   resources :albums, except: [:index, :new] do

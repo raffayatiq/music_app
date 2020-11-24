@@ -1,6 +1,7 @@
 <a class="nav_button" href="<%= album_url(@track.album) %>">Go To Album</a>
 
 <h1><%= @track.title %></h1>
+<h3><%= @track.artist_name %></h3>
 
 <% if !flash[:errors].nil? %>
 	<ul>

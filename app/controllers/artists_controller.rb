@@ -52,6 +52,12 @@ class ArtistsController < ApplicationController
 		redirect_to artists_url
 	end
 
+	def populate_albums
+		artist = Artist.find_by(id: params[:artist_id])
+		artist.populate_albums
+		redirect_to artist_url(artist)
+	end
+
 	private
 	def artist_params
 		params.require(:artist).permit(:name)

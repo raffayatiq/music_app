@@ -33,7 +33,7 @@ class Track < ApplicationRecord
 	def find_video_id
 		search_query = self.artist_name + " " + self.title
 	
-		result = query_youtube_api(search_query)
+		result = query_youtube_api(search_query, "video")
 
 		return nil if result.nil?
 		result['videoId']		
