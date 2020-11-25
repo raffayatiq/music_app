@@ -1,7 +1,1 @@
-### Allows users to catalog their favorite bands.
-
-### Automatically populates song lyrics, using web scrapping with open-uri and nokoGIRI
-
-### Queries the YouTube API to fetch song videos and album playlists. Used Rails to fetch Country Code and added that in the query parameters, in order to only fetch country available videos and playlists (there is currently a bug in the YouTube API which ignores the country code, resulting in country unavailable videos and playlists).
-
-### Queries the Spotify API to get album data in order to populate albums and album tracks.
+Allows users to catalog their favorite artists. A cheaper version of spotify that links the Spotify API to search for an artist's album and their tracks. Integration of YouTube API allows users to dynamically get the YouTube playlist for an album or a track. Also, there is functionality to dynamically populate song lyrics, using web scrapping with OpenURI and Nokogiri.
