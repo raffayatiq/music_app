@@ -1,6 +1,7 @@
 class AlbumsController < ApplicationController
 	def show
 		@album = Album.find_by(id: params[:id])
+		@album_tracks = @album.tracks.order(:id)
 		render :show
 	end
 

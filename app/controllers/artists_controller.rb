@@ -1,6 +1,6 @@
 class ArtistsController < ApplicationController
 	def index
-		@artists = current_user.artists
+		@artists = current_user.artists.order(:id)
 		render :index
 	end
 
