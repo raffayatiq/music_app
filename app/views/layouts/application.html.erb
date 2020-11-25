@@ -17,7 +17,7 @@
     <header>
       <h1>Music App</h1>
       <% if logged_in? %>
-          <a href="#">Take me home</a>
+          <a class="nav_button" href="<%= artists_url %>">Take me home</a>
           <section class="log_info">
             <p>Logged in as: <%= current_user.email %></p>
             <%= button_to "Log Out", session_url, method: :delete %>

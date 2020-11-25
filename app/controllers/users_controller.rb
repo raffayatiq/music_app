@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+	skip_before_action :require_login, only: [:new, :create]
+	
 	def new
 		@user = User.new
 		render :new
@@ -9,7 +11,7 @@ class UsersController < ApplicationController
 		
 		if @user.save
 			login!(@user)
-			render json: "Logged in as #{current_user.email}"
+			redirect_to artists_url
 		else
 			flash.now[:errors] = @user.errors.full_messages
 			render :new

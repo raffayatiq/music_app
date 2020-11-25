@@ -1,6 +1,6 @@
 class ArtistsController < ApplicationController
 	def index
-		@artists = Artist.all
+		@artists = current_user.artists
 		render :index
 	end
 
@@ -21,8 +21,12 @@ class ArtistsController < ApplicationController
 
 	def create
 		@artist = Artist.new(artist_params)
+		@users_artist = UsersArtist.new(user_id: current_user.id)
 
-		if @artist.save
+		if artist_exists?
+			redirect_to artists_url
+		elsif @artist.save
+			save_users_artist(@artist)
 			redirect_to artists_url
 		else
 			flash.now[:errors] = @artist.errors.full_messages
@@ -61,5 +65,17 @@ class ArtistsController < ApplicationController
 	private
 	def artist_params
 		params.require(:artist).permit(:name)
+	end
+
+	def artist_exists?
+		artist = Artist.find_by(artist_params)
+		return false if artist.nil?
+		save_users_artist(artist)
+		artist.persisted?
+	end
+
+	def save_users_artist(artist)
+		@users_artist.artist_id = artist.id
+		@users_artist.save
 	end
 end

@@ -5,8 +5,9 @@ class ApplicationRecord < ActiveRecord::Base
   SPOTIFY_CLIENT_SECRET = '6912fdf88ef0471d8829c8d05f39ebd4'.freeze
 
   def query_youtube_api(search_query, type)
-  	country_code = get_country_code
-  	search_query += "&regionCode=#{country_code}" if country_code
+  	# Disabled until YouTube API bug is fixed
+  	# country_code = get_country_code
+  	# search_query += "&regionCode=#{country_code}" if country_code
   	search_query += "&type=#{type}"
 
   	retries = 0

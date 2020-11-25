@@ -90,6 +90,10 @@ main h1 {
 	margin-left: 25px;
 }
 
+.log_info input[type=submit] {
+	padding: 5px 105px 5px 65px;
+}
+
 .nav_button, input[type=submit] {
 	margin: 5px;
 	padding: 5px 20px;

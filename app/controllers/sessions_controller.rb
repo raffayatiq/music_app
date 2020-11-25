@@ -1,4 +1,7 @@
 class SessionsController < ApplicationController
+	skip_before_action :require_login, only: [:new, :create]
+	before_action :redirect_if_logged_in, except: [:destroy]
+
 	def new
 		@user = User.new
 		render :new
@@ -19,7 +22,7 @@ class SessionsController < ApplicationController
 			render :new
 		else
 			login!(@user)
-			render json: "Logged in as #{current_user.email}"
+			redirect_to artists_url
 		end
 	end
 
