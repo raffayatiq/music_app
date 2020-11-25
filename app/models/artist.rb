@@ -13,7 +13,8 @@ class Artist < ApplicationRecord
 		return nil if album_data.nil?
 
 		album_data.each do |datum|
-			Album.create! title: datum.first,year: datum.second, artist_id: self.id
+			next if !Album.find_by(title: datum.first).nil?
+			Album.create! title: datum.first, year: datum.second, artist_id: self.id
 		end
 	end
 
