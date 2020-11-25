@@ -1,8 +1,8 @@
 class ApplicationRecord < ActiveRecord::Base
   self.abstract_class = true
-  YOUTUBE_API_KEY = 'AIzaSyAzwGhEYWBJKUbTHiBUOh40NoJRa61BMBo'.freeze
-  SPOTIFY_CLIENT_ID = 'dbcdc162ff6d494787cfaff2ce5fd49a'.freeze
-  SPOTIFY_CLIENT_SECRET = '6912fdf88ef0471d8829c8d05f39ebd4'.freeze
+  YOUTUBE_API_KEY = '[REDACTED]'.freeze
+  SPOTIFY_CLIENT_ID = '[REDACTED]'.freeze
+  SPOTIFY_CLIENT_SECRET = '[REDACTED]'.freeze
 
   def query_youtube_api(search_query, type)
   	# Disabled until YouTube API bug is fixed
